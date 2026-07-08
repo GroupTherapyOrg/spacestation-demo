@@ -1,8 +1,8 @@
-# 📸 PlutoSpace guided shot list
+# 📸 SpaceStation guided shot list
 
-Every screenshot/clip needed for the PlutoSpace README, in recording order. Each entry says
+Every screenshot/clip needed for the SpaceStation README, in recording order. Each entry says
 **what it proves**, **how to set it up**, and **what to capture**. Features marked
-*(unique to PlutoSpace)* are the ones Pluto.jl doesn't have — those are the point.
+*(unique to SpaceStation)* are the ones Pluto.jl doesn't have — those are the point.
 
 ---
 
@@ -10,10 +10,10 @@ Every screenshot/clip needed for the PlutoSpace README, in recording order. Each
 
 ```sh
 # the demo workspace
-DEMO=~/Documents/dev/GroupTherapyOrg/plutospace-demo
+DEMO=~/Documents/dev/GroupTherapyOrg/spacestation-demo
 
-# the collab CLI ships in the PlutoSpace checkout — put it on PATH for the agent shots
-export PATH="$HOME/Documents/dev/GroupTherapyOrg/PlutoSpace.jl/bin:$PATH"
+# `spacestation` and the `pluto-collab` CLI are both on PATH from the Pkg App install
+# (julia> import Pkg; Pkg.Apps.add(url="https://github.com/GroupTherapyOrg/SpaceStation.jl"))
 ```
 
 - **Window:** size the browser to a clean 16:9 (e.g. 1600×900) and keep it fixed across every
@@ -28,15 +28,15 @@ export PATH="$HOME/Documents/dev/GroupTherapyOrg/PlutoSpace.jl/bin:$PATH"
 
 ## 1 · The workspace opener  *(unique)*
 
-**Proves:** PlutoSpace starts at a VS Code-style "Open Folder" hub, not a notebook.
+**Proves:** SpaceStation starts at a VS Code-style "Open Folder" hub, not a notebook.
 
 **Setup:** launch with **no** folder:
 ```sh
-plutospace
+spacestation
 ```
 
 **Capture:**
-- the opener page — the PlutoSpace wordmark, **recent workspaces**, and the folder browser.
+- the opener page — the SpaceStation wordmark, **recent workspaces**, and the folder browser.
 - click into a couple of folders to show the breadcrumb + folder grid (the "browse the
   server's filesystem" picker).
 - the **paste-a-path** field.
@@ -49,7 +49,7 @@ plutospace
 
 **Setup:**
 ```sh
-plutospace "$DEMO"
+spacestation "$DEMO"
 ```
 Expand `notebooks/`, `data/`, `docs/` in the sidebar. Open `notebooks/01_welcome.jl`.
 
@@ -101,7 +101,7 @@ appearing in the tree.
 
 ## 6 · Plots in the browser — WasmMakie + PlutoUI
 
-**Proves:** rich, interactive output (and Pluto's package handling) inside the Land.
+**Proves:** rich, interactive output (and Pluto's package handling) inside SpaceStation.
 
 **Setup:** open `notebooks/02_plots.jl`. The committed cache restores all figures instantly, so
 it looks complete on open. To capture *live* rendering, run it (`Cmd/Ctrl+S`) — the first run
@@ -122,7 +122,7 @@ moving the workspace as each package loads).
 
 ## 7 · Lazy mode: edits mark cells stale, you run what changed  *(unique — the core)*
 
-**Proves:** PlutoSpace's default isn't autorun. Edits make cells **stale**; you run exactly the
+**Proves:** SpaceStation's default isn't autorun. Edits make cells **stale**; you run exactly the
 stale closure. This is what the slow cells in `03_lazy_and_cache.jl` are for.
 
 **Setup:** reset caches (`rm -f "$DEMO"/notebooks/*.pluto-cache.toml`), then open
@@ -161,7 +161,7 @@ are machine-readable; any tool can read results without running anything."*
 **Setup & capture:**
 1. run `03_lazy_and_cache.jl` fully (all green).
 2. **stop the server** (`Ctrl+C` in the launching terminal) and relaunch
-   `plutospace "$DEMO"`; reopen the notebook.
+   `spacestation "$DEMO"`; reopen the notebook.
 3. Capture: outputs are **all present immediately** — the chart, the stats, the report — with
    nothing recomputed. The only cell that comes back **stale** is `run_token` (see §10).
 
@@ -222,21 +222,21 @@ Arrange the browser and a terminal side by side.
 
 ## 12 · SSH remote workspaces  *(unique, experimental)*
 
-**Proves:** the entire Land — files, kernels, terminal, agent API — can run on a remote machine
+**Proves:** the entire workspace — files, kernels, terminal, agent API — can run on a remote machine
 over an SSH tunnel, point-and-click (the VS Code Remote-SSH model).
 
 **Prerequisite:** a host in `~/.ssh/config` reachable with **keyed** auth (`BatchMode=yes`; no
 password prompt). The remote needs `git` and `julia` available via a login shell.
 
-**Setup & capture:** launch `plutospace` with **no** folder (the opener, §1). If you have SSH
+**Setup & capture:** launch `spacestation` with **no** folder (the opener, §1). If you have SSH
 hosts, an **"SSH Remotes"** section lists them as pills.
 1. Click a host. Capture the progress banner: *"Connecting to `<host>` — connecting /
    checking / installing / starting / tunneling / ready"*, including the first-time note
    *"First-time setup compiles a lot of Julia — this is the slow step."*
 2. When it flips to **ready**, capture the opened remote workspace — then open a notebook and a
-   terminal **on the remote** to show it's the full Land, not a thin client.
+   terminal **on the remote** to show it's the full workspace, not a thin client.
 
-> First contact clones + instantiates PlutoSpace on the remote (minutes); reconnects after that
+> First contact clones + instantiates SpaceStation on the remote (minutes); reconnects after that
 > are instant. If you don't have a remote handy, capture just the opener's SSH Remotes section
 > and the progress banner.
 
@@ -244,7 +244,7 @@ hosts, an **"SSH Remotes"** section lists them as pills.
 
 ## 13 · Branding & polish
 
-**Capture:** the PlutoSpace **wordmark** in the sidebar header, the **favicon** in the browser
+**Capture:** the SpaceStation **wordmark** in the sidebar header, the **favicon** in the browser
 tab, and Pluto's **Safe-preview** intro on first opening a notebook. Small, but they make the
 README feel finished.
 

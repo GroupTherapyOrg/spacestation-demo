@@ -17,7 +17,7 @@ The whole agent surface is boring plumbing:
 - every running server drops a connection file in `~/.local/state/pluto/servers/<port>.json`
   (port + access secret — the Jupyter idiom);
 - a plain HTTP API at `/api/v1/…`;
-- the [`pluto-collab`](https://github.com/GroupTherapyOrg/PlutoSpace.jl/blob/main/bin/pluto-collab)
+- the [`pluto-collab`](https://github.com/GroupTherapyOrg/SpaceStation.jl/blob/main/bin/pluto-collab)
   CLI (just `curl` + `sed`).
 
 The dependency chain below is the playground. Read `AGENTS.md` in this workspace for the
@@ -55,7 +55,7 @@ Markdown.parse("> **$(headline)**")
 md"""
 ### The loop (try it in the terminal — or watch an agent do it)
 
-From any terminal, with this notebook open in PlutoSpace:
+From any terminal, with this notebook open in SpaceStation:
 
 ```sh
 # what's stale right now? (per-cell: stale / cold / errored / output)

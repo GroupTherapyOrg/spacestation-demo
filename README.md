@@ -1,31 +1,32 @@
-# PlutoSpace demo workspace 🟢🟣🔴
+# SpaceStation demo workspace 🟢🟣🔴
 
 A self-contained, **local-only** folder built to show off every feature that's *unique to*
-[PlutoSpace.jl](https://github.com/GroupTherapyOrg/PlutoSpace.jl) — the workspace, the tabs, the
+[SpaceStation.jl](https://github.com/GroupTherapyOrg/SpaceStation.jl) — the workspace, the tabs, the
 terminal, SSH remotes, and the lazy human+agent reactive model. Open it, screenshot it, record
 it.
 
 ## Launch
 
-From the PlutoSpace.jl checkout (so `plutospace` / `PlutoSpace.run` is available):
-
-```sh
-plutospace ~/Documents/dev/GroupTherapyOrg/plutospace-demo
-```
-
-or, as a package:
+SpaceStation installs as a **Julia [Pkg App](https://pkgdocs.julialang.org/dev/apps/)** — one command
+puts a real `spacestation` executable on your `PATH` (alongside `pluto-collab`):
 
 ```julia
-import PlutoSpace
-PlutoSpace.run(workspace="/Users/daleblack/Documents/dev/GroupTherapyOrg/plutospace-demo")
+julia> import Pkg; Pkg.Apps.add(url="https://github.com/GroupTherapyOrg/SpaceStation.jl")
 ```
 
-Lazy/collab mode is the default. Add `--autorun` for classic Pluto reactivity.
+Then open this folder as a workspace:
+
+```sh
+spacestation ~/Documents/dev/GroupTherapyOrg/spacestation-demo
+```
+
+Prefer it as a library? `import SpaceStation; SpaceStation.run(workspace="…/spacestation-demo")` works
+too. Lazy/collab mode is the default. Add `--autorun` for classic Pluto reactivity.
 
 ## What's in here
 
 ```
-plutospace-demo/
+spacestation-demo/
 ├── notebooks/
 │   ├── 01_welcome.jl          overview + classic reactivity (stdlib, instant)
 │   ├── 02_plots.jl            WasmMakie figures + a PlutoUI slider (self-contained env)

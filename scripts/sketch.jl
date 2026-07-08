@@ -1,6 +1,6 @@
 # sketch.jl — a plain Julia script (NOT a Pluto notebook).
 #
-# Notice: no `# ╔═╡` cell markers, no Cell order block. PlutoSpace opens this as a plain
+# Notice: no `# ╔═╡` cell markers, no Cell order block. SpaceStation opens this as a plain
 # file in a tab and edits it with CodeMirror — it does not try to run it reactively.
 # Run it the normal way from the integrated terminal:  julia scripts/sketch.jl
 

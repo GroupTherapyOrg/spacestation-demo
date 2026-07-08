@@ -8,7 +8,7 @@ using InteractiveUtils
 md"""
 # 🟡 Lazy mode: the two-file reactive model
 
-PlutoSpace's default is **lazy**. Editing a cell — in the browser *or* on disk — marks it (and
+SpaceStation's default is **lazy**. Editing a cell — in the browser *or* on disk — marks it (and
 everything downstream) **stale** instead of running it. *You* decide when to run, and a run
 executes exactly the stale closure and nothing more.
 
@@ -37,10 +37,10 @@ samples = begin
 end
 
 # ╔═╡ c0000005-0000-4000-8000-000000000005
-# 💢 also slow: a moving-average smoother over the samples.
+# 💢 also slow: a 9-point moving-average smoother over the samples.
 smoothed = begin
 	sleep(2)
-	[sum(samples[max(1, i - 4):i]) / length(max(1, i - 4):i) for i in eachindex(samples)]
+	[sum(samples[max(1, i - 8):i]) / length(max(1, i - 8):i) for i in eachindex(samples)]
 end
 
 # ╔═╡ c0000006-0000-4000-8000-000000000006
@@ -50,12 +50,13 @@ stats = (
 	peak = round(maximum(smoothed); digits = 3),
 	trough = round(minimum(smoothed); digits = 3),
 	mean = round(sum(smoothed) / length(smoothed); digits = 3),
+	spread = round(maximum(smoothed) - minimum(smoothed); digits = 3),
 )
 
 # ╔═╡ c0000007-0000-4000-8000-000000000007
 # ╠═╡ always_stale = true
 # 🎲 IMPURE & STANDALONE: uses rand() and the clock, so its result can't be reproduced — and
-# nothing depends on it. The metadata line above (always_stale = true) tells PlutoSpace to NEVER
+# nothing depends on it. The metadata line above (always_stale = true) tells SpaceStation to NEVER
 # trust a cached value here: it comes back stale after every restart, even though the code
 # never changed, while the rest of the pipeline restores green.
 run_token = "🎲 fresh every run — roll $(rand(1:9999)) at t=$(round(Int, time()))"
@@ -63,7 +64,7 @@ run_token = "🎲 fresh every run — roll $(rand(1:9999)) at t=$(round(Int, tim
 # ╔═╡ c0000008-0000-4000-8000-000000000008
 # cheap leaf: pure formatting over `stats`. Editing the text here re-runs ONLY this cell (and
 # the one under it) — the expensive cells above stay green.
-report = "📊 n=$(stats.n) · peak=$(stats.peak) · trough=$(stats.trough) · mean=$(stats.mean)"
+report = "📊 n=$(stats.n) · peak=$(stats.peak) · trough=$(stats.trough) · mean=$(stats.mean) · spread=$(stats.spread)"
 
 # ╔═╡ c0000009-0000-4000-8000-000000000009
 Markdown.parse("> **$(report)**")
